@@ -36,7 +36,8 @@ jobs:
       run: ./gradlew clean build --stacktrace
 
 
-  test:
+  unit_tests:
+    needs: [build]
     runs-on: ubuntu-latest
 
     steps:
@@ -68,7 +69,8 @@ jobs:
           path: app/build/reports
         if: always()
         
-  android_tests:
+  espresso_tests:
+    needs: [unit_tests]
     runs-on: macos-latest
 
     steps:
